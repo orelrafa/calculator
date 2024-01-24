@@ -20,7 +20,7 @@ for (let key of keys) {
       input = input.slice(0, -1);
       display_input.innerHTML = CleanInput(input);
     } else if (value == "=") {
-      let result = eval(input); //very unsafe in a more serious app
+      let result = eval(PrepareInput(input)); //very unsafe in a more serious app
       display_output.innerHTML = CleanOutput(result);
     } else if (value == "brackets") {
       if (
