@@ -2,15 +2,11 @@
 // https://www.youtube.com/watch?v=_x8mNUBhLSk
 
 const keys = document.querySelectorAll(".key");
-console.log(keys);
 const display_input = document.querySelector(".display .input");
 const display_output = document.querySelector(".display .output");
-console.log(display_input);
-console.log(display_output);
 let input = "";
 for (let key of keys) {
   const value = key.dataset.key;
-
   key.addEventListener("click", () => {
     if (value == "clear") {
       input = "";
@@ -77,10 +73,16 @@ function CleanOutput(output) {
   let decimal = output_string.split(".")[1];
   output_string = output_string.split(".")[0];
   let output_array = output_string.split("");
-  if (output_array.length > 3 && output_string != "Infinity") {
+  if (
+    output_array.length > 3 &&
+    output_string != "Infinity" &&
+    output_string != "-Infinity"
+  ) {
     for (let i = output_array.length - 3; i > 0; i -= 3) {
       output_array.splice(i, 0, ",");
     }
+  } else if (output_string.indexOf("Infinity") !== -1) {
+    return "Undefined";
   }
   if (decimal) {
     output_array.push(".");
@@ -124,7 +126,7 @@ function PrepareInput(input) {
   return tokens.join("");
 }
 /*
-Explanations for the regular expressions in welson's code:
+Explanations for myself for the regular expressions in welson's code:
 
 /%/g
 
