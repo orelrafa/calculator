@@ -77,7 +77,7 @@ function CleanOutput(output) {
   let decimal = output_string.split(".")[1];
   output_string = output_string.split(".")[0];
   let output_array = output_string.split("");
-  if (output_array.length > 3) {
+  if (output_array.length > 3 && output_string != "Infinity") {
     for (let i = output_array.length - 3; i > 0; i -= 3) {
       output_array.splice(i, 0, ",");
     }
